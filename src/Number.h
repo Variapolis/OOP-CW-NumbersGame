@@ -3,15 +3,13 @@
 
 class Number
 {
-private:
+protected:
 	int m_value;
-	bool m_splittable;
-	Number* m_split1;
-	Number* m_split2;
 public:
-	virtual int getValue();
-	virtual bool isSplittable();
-	void split(std::list<Number*>& myNumbers);
-	
+	Number(int value);
+	virtual int getValue() = 0;
+	virtual bool isSplittable() = 0;
+	virtual void split(std::list<Number*>& myNumbers) = 0;
+	virtual void print() = 0;
 };
 
