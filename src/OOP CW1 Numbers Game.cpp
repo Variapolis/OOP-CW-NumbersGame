@@ -8,6 +8,6 @@ int main()
 {
     std::cout << "Hello World!\n";
 	srand(time(NULL));
-    std::cout << __cplusplus << std::endl;
+	
 }
 
