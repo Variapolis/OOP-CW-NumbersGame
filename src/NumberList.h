@@ -18,7 +18,7 @@ public:
 	void multiply(int x, int y);
 	void divide(int x, int y);
 	void split(int x);
-	void targetFound();
+	bool targetFound();
 	void print();
 };
 

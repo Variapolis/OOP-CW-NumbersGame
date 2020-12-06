@@ -9,6 +9,6 @@ public:
 	int getValue() override;
 	bool isSplittable() override;
 	void split(std::list<Number*>& myNumbers) override;
-	void print() override;
+	void print(bool isFirst) override;
 };
 

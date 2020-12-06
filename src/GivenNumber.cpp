@@ -1,5 +1,7 @@
 #include "GivenNumber.h"
 
+#include <iostream>
+
 GivenNumber::GivenNumber(int value)
 	: Number(value)
 {
@@ -19,6 +21,7 @@ void GivenNumber::split(std::list<Number*>& myNumbers)
 {
 }
 
-void GivenNumber::print()
+void GivenNumber::print(bool isFirst)
 {
+	std::cout << m_value;
 }
