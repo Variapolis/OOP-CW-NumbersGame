@@ -1,12 +1,12 @@
 #include "NumberList.h"
 
-NumberList::NumberList(int min_given, int max_given)
+NumberList::NumberList()
 {
-	for (int i = min_given; i <= max_given; i++) // makes list starting from the number 1 until it reaches the number 10
+	for (int i = m_listMin; i <= m_listMax; i++) // Makes a list from the const of listMin to listMax, iterating by one each time.
 	{
-		m_numbers.push_back(new GivenNumber(i)); //appends numbers to the end
+		m_numbers.push_back(new GivenNumber(i)); // Appends a new GivenNumber of value i
 	}
-	m_targetNum = rand() % 899 + 100; // sets the target number range from 100 to 999
+	m_targetNum = rand() % (m_targetMax-m_targetMin) + m_targetMin; // NEEDS TO BE REDONE!!!!
 }
 
 void NumberList::add(int x, int y)

@@ -5,8 +5,6 @@
 #include <iostream>
 #include "NumberList.h"
 
-#define MIN 1
-#define MAX 10
 
 void operationInput(NumberList& numlist)
 {
@@ -59,7 +57,7 @@ void gameLoop(NumberList &numberList)
 
 void gameStart()
 {
-    NumberList* numberList = new NumberList(MIN, MAX);
+    NumberList* numberList = new NumberList();
     gameLoop(*numberList);
 }
 
