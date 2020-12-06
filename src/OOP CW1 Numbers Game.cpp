@@ -49,7 +49,8 @@ void gameLoop(NumberList &numberList)
 		operationInput(numberList);
         if (numberList.targetFound())
         {
-            std::cout << "You win!" << std::endl;
+            std::cout << "You win! Press enter to play again..." << std::endl;
+            std::cin.ignore();
 	        break;
         }
 	}
