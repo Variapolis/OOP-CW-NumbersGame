@@ -1,45 +1,44 @@
 #include "NumberList.h"
 
+#include <vector>
+
 NumberList::NumberList()
 {	
 	for (int i = m_listMin; i <= m_listMax; i++) // Makes a list from the const of listMin to listMax, iterating by one each time.
 	{
 		m_numbers.push_back(new GivenNumber(i)); // Appends a new GivenNumber of value i
 	}
-    //createTarget();
-    m_targetNum = new CompositeNumber(500, (new GivenNumber(5)), (new GivenNumber(10)), '+');
+    createTarget();
     print();
 }
 
-//void NumberList::createTarget()
-//{
-//    std::list<Number*>::iterator it1, it2;
-//    bool numFound1 = false, numFound2 = false;
-//    // Iterates through the list using two stl iterators to find x and y via two for loops. Could condense into one but leaving for the sake of readability.
-//    for (it1 = m_numbers.begin(); it1 != m_numbers.end(); ++it1)// If number is found, stops iterating.
-//    {
-//        if ((*it1)->getValue() == x)
-//        {
-//            numFound1 = true;
-//            break;
-//        }
-//    }
-//    for (it2 = m_numbers.begin(); it2 != m_numbers.end(); ++it2)// Same as above but with iterator 2.
-//    {
-//        if ((*it2)->getValue() == y && it2 != it1)
-//        {
-//            numFound2 = true;
-//            break;
-//        }
-//    }
-//
-//    if (numFound1 && numFound2)// If both numbers are found, pushes back a new Composite Number containing both original numbers, the operation and the value of the combined nums.
-//    {
-//        m_numbers.push_back(new CompositeNumber((*it1)->getValue() * (*it2)->getValue(), (*it1), (*it2), '*'));
-//        m_numbers.erase(it1);
-//        m_numbers.erase(it2);
-//    }
-//}
+void NumberList::createTarget()
+{
+    std::vector<Number*> tempVector;
+    int position1, position2;
+    for (int i = m_listMin; i <= m_listMax; i++) // Makes a list from the const of listMin to listMax, iterating by one each time.
+    {
+        tempVector.push_back(new GivenNumber(i)); // Appends a new GivenNumber of value i
+    }
+    position1 = position2 = rand() % tempVector.size();
+    while (position2 == position1) { position2 = rand() % tempVector.size(); }
+    m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() + tempVector[position2]->getValue(), tempVector[position1], tempVector[position2], '+'));
+	while(m_targetNum->getValue() < 100 && tempVector.size() > 1)
+	{
+        position1 = rand() % tempVector.size();
+        bool operation = rand() % 2;
+        switch (operation)
+        {
+        case 0:
+            m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() + m_targetNum->getValue(), tempVector[position1], m_targetNum, '+'));
+            break;
+        case 1:
+            m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() * m_targetNum->getValue(), tempVector[position1], m_targetNum, '*'));
+            break;
+        }
+	}
+    if (m_targetNum->getValue() < 100) { createTarget(); }
+}
 
 void NumberList::add(int x, int y)
 {
@@ -226,4 +225,9 @@ void NumberList::print()
         std::cout << ", ";
     }
     std::cout << "and the target number is " << m_targetNum->getValue() << ". " << std::endl;
+}
+
+void NumberList::printSolution()
+{
+    m_targetNum->print(true);
 }

@@ -21,5 +21,6 @@ public:
 	void split(int x);
 	bool targetFound();
 	void print();
+	void printSolution();
 };
 

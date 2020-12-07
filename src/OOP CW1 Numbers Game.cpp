@@ -54,6 +54,10 @@ char findOperation(std::string word)
     {
         return 'l';
     }
+    if (word == "c" || word == "Cheat" || word == "cheat")
+    {
+        return 'c';
+    }
     if (word == "q" || word == "Quit" || word == "quit")
     {
         return 'q';
@@ -103,6 +107,9 @@ bool operationInput(NumberList& numlist)
         case 'l':
             numlist.print();
             break;
+        case 'c':
+            numlist.printSolution();
+            break;
         default:
             throw std::invalid_argument(
 	            "Input is incorrect. Please enter as 'Operation FirstNumber SecondNumber./nAvailable inputs are Add, Subtract, Multiply, Divide, Split, Quit ' ");
@@ -128,6 +135,8 @@ void gameLoop(NumberList &numberList)
 		if (operationInput(numberList))
 		{
             std::cout << "You quit... Goodbye. Here is a possible solution: " << std::endl;
+            numberList.printSolution();
+            return;
 		}
         if (numberList.targetFound())
         {
@@ -147,9 +156,6 @@ void gameStart()
 int main()
 {
 	srand(time(NULL));
-    while (true)
-    {
-        gameStart();
-    }
+	gameStart();
 }
 
