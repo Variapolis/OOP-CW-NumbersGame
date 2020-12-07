@@ -1,5 +1,4 @@
-// OOP CW1 Numbers Game.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 
 #include <ctime>
 #include <iostream>
@@ -11,24 +10,24 @@
 std::vector<std::string> splitString(std::string input)
 {
     input += " ";
-	std::string tempString = "";
+	std::string tempString = ""; // Iterates through the inputted string and adds words onto a vector, separated via spaces.
     std::vector<std::string>tempVector;
 	for (auto i : input)
 	{
 		if(i == ' ')
 		{
-            tempVector.push_back(tempString);
+            tempVector.push_back(tempString); // If current char is a space, pushes back to vector.
             tempString = "";
 		}
         else
         {
-            tempString += i;
+            tempString += i; // String concats the characters
         }
 	}
     return tempVector;
 }
 
-char findOperation(std::string word)
+char findOperation(std::string word) // Hard-coded, converts all inputs into a char for easier management within a switch statement.
 {
 	if(word == "+" || word == "Add" || word == "add")
 	{
@@ -54,7 +53,7 @@ char findOperation(std::string word)
     {
         return 'l';
     }
-    if (word == "c" || word == "Cheat" || word == "cheat")
+    if (word == "c" || word == "Cheat" || word == "cheat") 
     {
         return 'c';
     }
@@ -74,13 +73,13 @@ bool operationInput(NumberList& numlist)
 
     char operation = findOperation(inputVec[0]);
 
-    try
+    try // Try/Catch for different predefine errors as well as values being inputted of the wrong type.
     {
         if (inputVec.size() < 3 && (operation == '+' || operation == '-' || operation == '*' || operation == '/')) { throw std::invalid_argument("Operation requires two values!");; }
         if (inputVec.size() < 2 && (operation == 's')) { throw std::invalid_argument("Operation requires a value!"); }
-        if (inputVec.size() > 3) { throw std::invalid_argument("Too many values!"); }
+        if (inputVec.size() > 3) { throw std::invalid_argument("Too many values!"); } // Different pre-defined exceptions
     	
-        switch (operation)
+        switch (operation) // switch statement callback on NumberList functions depending on input.
         {
         case '+':
             numlist.add(std::stoi(inputVec[1]), std::stoi(inputVec[2]));
@@ -108,16 +107,16 @@ bool operationInput(NumberList& numlist)
             numlist.print();
             break;
         case 'c':
-            numlist.printSolution();
+            numlist.printSolution(); // Little cheat code I made for debug ;P
             break;
         default:
             throw std::invalid_argument(
 	            "Input is incorrect. Please enter as 'Operation FirstNumber SecondNumber./nAvailable inputs are Add, Subtract, Multiply, Divide, Split, Quit ' ");
             
-            // ADD QUIT FUNCTIONALITY ------------------------------------------------------------------------------------------------
+           
         }
     }
-    catch (const std::invalid_argument& e)
+    catch (const std::invalid_argument& e) // Catch block prints invalid_argument exception
     {
 		std::cout << "Error: '"<< e.what() << "'" << std::endl;
     	return false;
@@ -132,13 +131,13 @@ void gameLoop(NumberList &numberList)
 {
 	while (true)
 	{
-		if (operationInput(numberList))
+		if (operationInput(numberList)) // Runs input and handles quit.
 		{
             std::cout << "You quit... Goodbye. Here is a possible solution: " << std::endl;
             numberList.printSolution();
             return;
 		}
-        if (numberList.targetFound())
+        if (numberList.targetFound()) // Checks target and handles win
         {
             std::cout << "You win! Press enter to play again..." << std::endl;
             std::cin.ignore();
@@ -155,7 +154,7 @@ void gameStart()
 
 int main()
 {
-	srand(time(NULL));
+	srand(time(NULL)); // Rand seed using time 
 	gameStart();
 }
 

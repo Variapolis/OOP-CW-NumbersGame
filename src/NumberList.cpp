@@ -1,3 +1,5 @@
+
+
 #include "NumberList.h"
 
 #include <vector>
@@ -14,20 +16,24 @@ NumberList::NumberList()
 
 void NumberList::createTarget()
 {
-    std::vector<Number*> tempVector;
+    std::vector<Number*> tempVector; // Created a temporary vector from 1 to 10 (List kept giving me an error)
     int position1, position2;
+    bool operation;
+	
     for (int i = m_listMin; i <= m_listMax; i++) // Makes a list from the const of listMin to listMax, iterating by one each time.
     {
         tempVector.push_back(new GivenNumber(i)); // Appends a new GivenNumber of value i
     }
     position1 = position2 = rand() % tempVector.size();
-    while (position2 == position1) { position2 = rand() % tempVector.size(); }
+    while (position2 == position1) { position2 = rand() % tempVector.size(); } // Instantiates the target number by adding two random variables together from the list
     m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() + tempVector[position2]->getValue(), tempVector[position1], tempVector[position2], '+'));
-	while(m_targetNum->getValue() < 100 && tempVector.size() > 1)
+
+	while(m_targetNum->getValue() < 100 && tempVector.size() > 1) // Continues to to the above but with only a single element from the vector 
+        // until either the vector is empty or the value is above 100
 	{
         position1 = rand() % tempVector.size();
-        bool operation = rand() % 2;
-        switch (operation)
+        operation = rand() % 2;
+        switch (operation) // Randomizes operation between the given and composite number
         {
         case 0:
             m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() + m_targetNum->getValue(), tempVector[position1], m_targetNum, '+'));
@@ -184,7 +190,7 @@ void NumberList::split(int x)
 {
     std::list<Number*>::iterator it;
     bool numFound = false;
-    for (it = m_numbers.begin(); it != m_numbers.end(); ++it)
+    for (it = m_numbers.begin(); it != m_numbers.end(); ++it) // Similar to the operation functions, finds a splittable number in the list and calls its split func.
     {
         if ((*it)->getValue() == x)
         {
@@ -193,16 +199,16 @@ void NumberList::split(int x)
         	{
                 (*it)->split(m_numbers);
                 delete (*it);
-                m_numbers.erase(it);
+                m_numbers.erase(it); // erases the original from the list
                 return;
         	}
         }
     }
-    if (numFound) { std::cout << x << "is not splittable!" << std::endl;   return; }
+    if (numFound) { std::cout << x << "is not splittable!" << std::endl;   return; } // print if not found / splittable
     std::cout << x << " is not in your list!" << std::endl;
 }
 
-bool NumberList::targetFound()
+bool NumberList::targetFound() // Iterates through list to check for target value
 {
     std::list<Number*>::iterator it;
     for (it = m_numbers.begin(); it != m_numbers.end(); ++it)
@@ -216,7 +222,7 @@ bool NumberList::targetFound()
     return false;
 }
 
-void NumberList::print()
+void NumberList::print() // Prints each number in the list by calling a print function on it and then printing a comma afterwards.
 {
     std::list<Number*>::iterator it;
     for (it = m_numbers.begin(); it != m_numbers.end(); it++)
@@ -224,10 +230,10 @@ void NumberList::print()
         (*it)->print(true);
         std::cout << ", ";
     }
-    std::cout << "and the target number is " << m_targetNum->getValue() << ". " << std::endl;
+    std::cout << "and the target number is " << m_targetNum->getValue() << ". " << std::endl; // Prints target value.
 }
 
-void NumberList::printSolution()
+void NumberList::printSolution() // Prints the target number.
 {
     m_targetNum->print(true);
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include <xstring>
 #include "Number.h"
 
 class CompositeNumber
@@ -11,7 +10,6 @@ class CompositeNumber
 public:
 	CompositeNumber(int value, Number* comp1, Number* comp2, char operation);
 	int getValue() override;
-	std::string getOperation();
 	bool isSplittable() override;
 	void split(std::list<Number*>& myNumbers) override;
 	void print(bool isFirst) override;
