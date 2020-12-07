@@ -2,7 +2,6 @@
 #include <list>
 #include <iostream>
 
-#include "Number.h"
 #include "GivenNumber.h"
 #include "CompositeNumber.h"
 

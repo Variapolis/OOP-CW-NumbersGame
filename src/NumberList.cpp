@@ -6,7 +6,7 @@ NumberList::NumberList()
 	{
 		m_numbers.push_back(new GivenNumber(i)); // Appends a new GivenNumber of value i
 	}
-	m_targetNum = rand() % (m_targetMax-m_targetMin) + m_targetMin; // NEEDS TO BE REDONE!!!!
+	m_targetNum = rand() % (m_targetMax-m_targetMin) + m_targetMin; // NEEDS TO BE REDONE!!!! --------------------------------------------------------------------
 }
 
 void NumberList::add(int x, int y)
