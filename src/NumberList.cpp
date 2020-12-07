@@ -207,7 +207,7 @@ void NumberList::split(int x)
         	}
         }
     }
-    if (numFound) { std::cout << x << "is not splittable!" << std::endl;   return; } // print if not found / splittable
+    if (numFound) { std::cout << x << " is not splittable!" << std::endl;   return; } // print if not found / splittable
     std::cout << x << " is not in your list!" << std::endl;
 }
 
