@@ -27,7 +27,9 @@ void NumberList::createTarget()
     position1 = position2 = rand() % tempVector.size();
     while (position2 == position1) { position2 = rand() % tempVector.size(); } // Instantiates the target number by adding two random variables together from the list
     m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() + tempVector[position2]->getValue(), tempVector[position1], tempVector[position2], '+'));
-
+    tempVector.erase(tempVector.begin()+position1);
+    tempVector.erase(tempVector.begin() + position2 - (position1<position2));
+	
 	while(m_targetNum->getValue() < 100 && tempVector.size() > 1) // Continues to to the above but with only a single element from the vector 
         // until either the vector is empty or the value is above 100
 	{
@@ -42,6 +44,7 @@ void NumberList::createTarget()
             m_targetNum = (new CompositeNumber(tempVector[position1]->getValue() * m_targetNum->getValue(), tempVector[position1], m_targetNum, '*'));
             break;
         }
+        tempVector.erase(tempVector.begin() + position1);
 	}
     if (m_targetNum->getValue() < 100) { createTarget(); }
 }
