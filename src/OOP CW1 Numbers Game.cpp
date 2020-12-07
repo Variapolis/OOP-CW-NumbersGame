@@ -94,6 +94,7 @@ bool operationInput(NumberList& numlist)
             numlist.print();
             break;
         case '/':
+            if (std::stoi(inputVec[2]) == 0) { throw std::invalid_argument("Cannot divide by zero!"); }
             numlist.divide(std::stoi(inputVec[1]), std::stoi(inputVec[2]));
             numlist.print();
             break;
