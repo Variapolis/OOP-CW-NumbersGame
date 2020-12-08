@@ -1,8 +1,7 @@
 
 
 #include "NumberList.h"
-#include "GivenNumber.h"
-#include <iostream>
+
 #include <vector>
 
 NumberList::NumberList()
@@ -87,7 +86,7 @@ void NumberList::subtract(int x, int y)
 {
     std::list<Number*>::iterator it1, it2;
     bool numFound1 = false, numFound2 = false;
-    if (x >= y)
+    if (x > y)
     {
         // Iterates through the list using two stl iterators to find x and y via two for loops. Could condense into one but leaving for the sake of readability.
         for (it1 = m_numbers.begin(); it1 != m_numbers.end(); ++it1) 

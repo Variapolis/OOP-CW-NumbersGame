@@ -1,7 +1,9 @@
 
-
 #include "CompositeNumber.h"
+
+
 #include <iostream>
+#include <string>
 
 CompositeNumber::CompositeNumber(int value, Number* comp1, Number* comp2, char operation)
 	: Number(value), m_component1(comp1), m_component2(comp2), m_operation(operation) // Constructor initializes the value, components and operation (Could use 3 params, value is redundant)
