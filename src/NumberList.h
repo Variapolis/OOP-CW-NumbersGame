@@ -1,3 +1,5 @@
+// Tautvydas Marcinkevicius [w1728854] | Object Oriented Programming CW | December 2020 | Klaus Draeger - Lecturer
+
 #pragma once
 #include <list>
 #include "CompositeNumber.h"

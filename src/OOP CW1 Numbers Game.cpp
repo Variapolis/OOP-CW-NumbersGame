@@ -128,7 +128,7 @@ bool operationInput(NumberList& numlist)
 
 
 
-void gameLoop(NumberList &numberList)
+bool gameLoop(NumberList &numberList)
 {
 	while (true)
 	{
@@ -136,21 +136,24 @@ void gameLoop(NumberList &numberList)
 		{
             std::cout << "You quit... Goodbye. Here is a possible solution: " << std::endl;
             numberList.printSolution();
-            return;
+            return true;
 		}
         if (numberList.targetFound()) // Checks target and handles win
         {
             std::cout << "You win! Press enter to play again..." << std::endl;
             std::cin.ignore();
-	        break;
+            return false;
         }
 	}
 }
 
 void gameStart()
 {
-    NumberList* numberList = new NumberList();
-    gameLoop(*numberList);
+    while (true)
+    {
+        NumberList* numberList = new NumberList();
+        if (gameLoop(*numberList)) { break; }
+    }
 }
 
 int main()
