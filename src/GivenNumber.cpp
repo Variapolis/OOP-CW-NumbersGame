@@ -1,5 +1,3 @@
-
-
 #include "GivenNumber.h"
 
 #include <iostream>
