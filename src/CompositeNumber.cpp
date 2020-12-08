@@ -1,3 +1,5 @@
+
+
 #include "CompositeNumber.h"
 #include <iostream>
 
