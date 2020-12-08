@@ -112,7 +112,7 @@ bool operationInput(NumberList& numlist)
             break;
         default:
             throw std::invalid_argument(
-	            "Input is incorrect. Please enter as 'Operation FirstNumber SecondNumber./nAvailable inputs are Add, Subtract, Multiply, Divide, Split, Quit ' ");
+	            "Input is incorrect. Please enter as 'Operation FirstNumber SecondNumber.\nAvailable inputs are Add, Subtract, Multiply, Divide, Split, Quit ' ");
             
            
         }
