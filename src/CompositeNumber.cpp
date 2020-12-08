@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 4bfa74a... Restarts after winning
 =======
 >>>>>>> parent of 4bfa74a... Restarts after winning
 #include "CompositeNumber.h"
