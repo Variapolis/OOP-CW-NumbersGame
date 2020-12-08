@@ -9,7 +9,7 @@ GivenNumber::GivenNumber(int value) // Constructor initializes simple int value
 {
 }
 
-int GivenNumber::getValue() // Typical getter
+int GivenNumber::getValue() // Typical 
 {
 	return m_value;
 }
