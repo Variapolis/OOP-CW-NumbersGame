@@ -2,6 +2,9 @@
 
 #pragma once
 #include <list>
+#include <iostream>
+
+#include "GivenNumber.h"
 #include "CompositeNumber.h"
 
 class NumberList
